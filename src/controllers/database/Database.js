@@ -8,5 +8,8 @@ class DataBase {
   async saveVote(credentials) {
     return await this.client.saveVote(credentials);
   }
+  async getVotes() {
+    return await this.client.getVotes();
+  }
 }
 module.exports = DataBase;

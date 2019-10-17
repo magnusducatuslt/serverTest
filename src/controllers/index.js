@@ -45,6 +45,15 @@ class Controller {
     }
     return;
   }
+  async getVotes(req, res) {
+    try {
+      const result = await this.db.getVotes();
+      console.log(result);
+      return { status: 0, message: result };
+    } catch (e) {
+      return { status: 1, message: e };
+    }
+  }
 }
 
 module.exports = Controller;

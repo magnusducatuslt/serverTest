@@ -8,15 +8,15 @@ const user = {
   session: null,
 };
 router.post('/', async (req, res) => {
-  const result = await controller.approveVote(req, res);
+  await controller.approveVote(req, res);
   res.status(200);
   res.send(`123asdio@8asdmc`);
   res.end();
 });
 router.get('/', async (req, res) => {
-  console.log(req.session.id);
+  const result = await controller.getVotes(req, res);
   res.status(200);
-  res.send();
+  res.send(result);
   res.end();
 });
 module.exports = router;

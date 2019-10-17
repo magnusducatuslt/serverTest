@@ -63,6 +63,12 @@ class Postgre {
       ]
     );
   }
+  async getVotes() {
+    return await this.executeQuery(
+      'SELECT mentor,COUNT(mentor) from list GROUP BY mentor',
+      []
+    );
+  }
 }
 
 module.exports = Postgre;
